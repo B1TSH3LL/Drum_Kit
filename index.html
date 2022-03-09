@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Drum Kit</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+</head>
+
+<body>
+
+  <h1 id="title">Drum 🥁 Kit</h1>
+  <div class="set">
+    <button class="w drum">w</button>
+    <button class="a drum">a</button>
+    <button class="s drum">s</button>
+    <button class="d drum">d</button>
+    <button class="j drum">j</button>
+    <button class="k drum">k</button>
+    <button class="l drum">l</button>
+  </div>
+
+  <!-- <script src="assets/js/index.js"></script> -->
+  <script>
+    var numberOfDrumsButton = document.querySelectorAll(".drum").length;
+
+for (var i = 0; i < numberOfDrumsButton; i++) {
+    
+    document.querySelectorAll("button")[i].addEventListener("click", function () {    //using anynoumous function you can use normal too.
+
+        var buttonInnerHtml = this.innerHTML;
+
+        makeSound(buttonInnerHtml);
+
+        Animation(buttonInnerHtml);
+       
+    });
+}
+
+
+document.addEventListener("keypress", function(event) {
+    makeSound(event.key);
+    Animation(event.key);
+})
+
+function makeSound(key) {
+
+    switch (key) {
+        case "w":
+            var tom1 = new Audio('assets/sounds/tom-1.mp3');
+            tom1.play();
+            break;
+
+        case "a":
+            var tom2 = new Audio('assets/sounds/tom-2.mp3');
+            tom2.play();
+            break;
+
+        case "s":
+            var tom3 = new Audio('assets/sounds/tom-3.mp3');
+            tom3.play();
+            break;
+
+        case "d":
+            var tom4 = new Audio('assets/sounds/tom-4.mp3');
+            tom4.play();
+            break;
+
+        case "j":
+            var crash = new Audio('assets/sounds/crash.mp3');
+            crash.play();
+            break;
+
+        case "k":
+            var kick = new Audio('assets/sounds/kick-bass.mp3');
+            kick.play();
+            break;
+
+        case "l":
+            var snare = new Audio('assets/sounds/snare.mp3');
+            snare.play();
+            break;
+
+        default:
+            console.log(buttonInnerHtml);
+    }
+}
+
+function Animation(currentKey) {
+
+    var  activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 300);
+}
+  </script>
+</body>
+
+</html>
